@@ -31,7 +31,6 @@
         <a class="pure-menu-heading" href="">Iteale</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Log In</a></li>
         </ul>

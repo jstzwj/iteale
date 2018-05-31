@@ -1,91 +1,69 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>iview example</title>
-    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
-    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
-    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>Iteale &ndash; Get paid for creation</title>
 
-    <style scoped>
-        .layout {
-            border: 1px solid #d7dde4;
-            background: #f5f7f9;
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
 
-        .layout-logo {
-            width: 100px;
-            height: 30px;
-            background: #5b6270;
-            border-radius: 3px;
-            float: left;
-            position: relative;
-            top: 15px;
-            left: 20px;
-        }
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
 
-        .layout-nav {
-            width: 420px;
-            margin: 0 auto;
-            margin-right: 20px;
-        }
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
-        .layout-footer-center {
-            text-align: center;
-        }
-    </style>
+    <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+        <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/layouts/marketing.css">
+    <!--<![endif]-->
 </head>
 
 <body>
-        <div class="layout">
-            <Layout>
-                <Header>
-                    <Menu mode="horizontal" theme="dark" active-name="1">
-                        <div class="layout-logo"></div>
-                        <div class="layout-nav">
-                            <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
-                            </MenuItem>
-                            <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                            <Icon type="ios-analytics"></Icon>
-                            Item 3
-                            </MenuItem>
-                            <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
-                            </MenuItem>
-                        </div>
-                    </Menu>
-                </Header>
-                <Content :style="{padding: '0 50px'}">
-                    <Breadcrumb :style="{margin: '20px 0'}">
-                        <BreadcrumbItem>Home</BreadcrumbItem>
-                        <BreadcrumbItem>Components</BreadcrumbItem>
-                        <BreadcrumbItem>Layout</BreadcrumbItem>
-                    </Breadcrumb>
-                    <Card>
-                        <div style="min-height: 200px;">
-                            Content
-                        </div>
-                    </Card>
-                </Content>
-                <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
-            </Layout>
-        </div>
-    <script>
-        export default {
 
-        }
-    </script>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">Iteale</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Log In</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="content">
+            <h2 class="content-head is-center">Log In</h2>
+
+            <div class="pure-g">
+            	<div class="l-box-lrg pure-u-1 pure-u-md-8-24"></div>
+                <div class="l-box-lrg pure-u-1 pure-u-md-8-24">
+                    <form class="pure-form pure-form-stacked">
+                        <fieldset>
+                            <label for="email">Your Email</label>
+                            <input id="email" type="email" placeholder="Your Email">
+
+                            <label for="password">Your Password</label>
+                            <input id="password" type="password" placeholder="Your Password">
+
+                            <button type="submit" class="pure-button">Log In</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="l-box-lrg pure-u-1 pure-u-md-8-24"></div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
