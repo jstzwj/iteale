@@ -19,7 +19,7 @@ public class FreeMarkerConfig {
     public void  setSharedVariable(){
         resolver.setSuffix(".ftl");
         resolver.setCache(false);   
-        resolver.setRequestContextAttribute("request"); //为模板调用时，调用request对象的变量名</span>    
+        resolver.setRequestContextAttribute("request");  
         resolver.setOrder(0);
         resolver.setExposeRequestAttributes(true);
         resolver.setExposeSessionAttributes(true);
