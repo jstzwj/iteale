@@ -24,6 +24,13 @@
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="css/layouts/marketing.css">
     <!--<![endif]-->
+
+    <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/blog-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/blog.css">
+    <!--<![endif]-->
 </head>
 
 <body>
