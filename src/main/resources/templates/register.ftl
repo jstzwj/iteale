@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jQuery.js"></script>
+<script type="text/javascript">
+    function show(){
+        $.post("ajax/hello",{},
+                function(result){
+                    alert(result);
+                }
+            );
+    }
+     
+</script>
+</head>
+<body>
+<button onclick="show()">你大爷</button>
+</body>
+</html>
