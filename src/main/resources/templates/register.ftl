@@ -1,72 +1,119 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A layout example that shows off a responsive product landing page.">
-    <title>Iteale &ndash; Get paid for creation</title>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <!-- Site Properties -->
+    <title>Register Example - Semantic</title>
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <!--<![endif]-->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/semantic-ui/2.3.1/semantic.min.css">
+    <script src="https://cdn.bootcss.com/semantic-ui/2.3.1/semantic.min.js"></script>
 
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
 
-    <!--[if lte IE 8]>
-            <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
-        <![endif]-->
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="css/layouts/marketing.css">
-    <!--<![endif]-->
+        body>.grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+    <script>
+        $(document)
+            .ready(function () {
+                $('.ui.form')
+                    .form({
+                        fields: {
+                            email: {
+                                identifier: 'email',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please enter your e-mail'
+                                    },
+                                    {
+                                        type: 'email',
+                                        prompt: 'Please enter a valid e-mail'
+                                    }
+                                ]
+                            },
+                            password: {
+                                identifier: 'password',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please enter your password'
+                                    },
+                                    {
+                                        type: 'length[6]',
+                                        prompt: 'Your password must be at least 6 characters'
+                                    }
+                                ]
+                            }
+                        }
+                    })
+                    ;
+            })
+            ;
+    </script>
 </head>
 
 <body>
+    <#include "navi.ftl">
 
-    <div class="header">
-        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href="">Iteale</a>
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui teal image header">
+                    <div class="content">
+                        Sign-up to your account
+                    </div>
+                </h2>
+                <form class="ui large form">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="pencil alternate icon"></i>
+                                <input type="text" name="name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="ui fluid large teal submit button">Sign Up</div>
+                    </div>
 
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Log In</a></li>
-            </ul>
-        </div>
-    </div>
+                    <div class="ui error message"></div>
 
-    <div class="content-container">
-        <div class="content">
-            <h2 class="content-head is-center">Sign Up</h2>
+                </form>
 
-            <div class="pure-g">
-            	<div class="l-box-lrg pure-u-1 pure-u-md-8-24"></div>
-                <div class="l-box-lrg pure-u-1 pure-u-md-8-24">
-                    <form class="pure-form pure-form-stacked">
-                        <fieldset>
-
-                            <label for="name">Your Name</label>
-                            <input id="name" type="text" placeholder="Your Name">
-
-                            <label for="email">Your Email</label>
-                            <input id="email" type="email" placeholder="Your Email">
-
-                            <label for="password">Your Password</label>
-                            <input id="password" type="password" placeholder="Your Password">
-
-                            <button type="submit" class="pure-button">Sign Up</button>
-                        </fieldset>
-                    </form>
+                <div class="ui message">
+                    New to us?
+                    <a href="#">Sign Up</a>
                 </div>
-                <div class="l-box-lrg pure-u-1 pure-u-md-8-24"></div>
             </div>
-
         </div>
-    </div>
 
 </body>
 
