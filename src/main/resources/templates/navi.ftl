@@ -8,14 +8,14 @@
                     <i class="search link icon"></i>
                 </div>
             </div>
-            <#if userID??>
+            <#if user??>
                 <div class="ui simple dropdown item">
-                    Dropdown
+                    <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div class="header">Sign in as ${userName}</div>
+                        <div class="header">Sign in as ${user.getName()}</div>
                         <div class="divider"></div>
-                        <a class="item" href="#">Profile</a>
+                        <a class="item" href="user">Profile</a>
                         <a class="item" href="#">Follower</a>
                         <div class="divider"></div>
                         <a class="item" href="#">Help</a>

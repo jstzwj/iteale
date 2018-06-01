@@ -40,12 +40,12 @@
                             <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
                         </div>
                         <div class="content">
-                            <div class="header">${curName}</div>
+                            <div class="header">${curUser.getName()}</div>
                             <div class="meta">
-                                <a>${curEmail}</a>
+                                <a>${curUser.getEmail()}</a>
                             </div>
                             <div class="description">
-                                ${curBio}
+                                ${curUser.getBio()}
                             </div>
                         </div>
                         <div class="extra content">

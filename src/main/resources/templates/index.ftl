@@ -145,6 +145,22 @@
             <a class="item">Work</a>
             <a class="item">Company</a>
             <a class="item">Careers</a>
+            <#if user??>
+            <div class="ui simple right dropdown item">
+                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="header">Sign in as ${user.getName()}</div>
+                    <div class="divider"></div>
+                    <a class="item" href="user">Profile</a>
+                    <a class="item" href="#">Follower</a>
+                    <div class="divider"></div>
+                    <a class="item" href="#">Help</a>
+                    <a class="item" href="#">Setting</a>
+                    <a class="item" href="signout">Sign out</a>
+                </div>
+            </div>
+            <#else>
             <div class="right menu">
                 <div class="item">
                     <a class="ui button">Log in</a>
@@ -153,6 +169,7 @@
                     <a class="ui primary button">Sign Up</a>
                 </div>
             </div>
+            </#if>
         </div>
     </div>
 
@@ -178,10 +195,27 @@
                     <a class="item">Work</a>
                     <a class="item">Company</a>
                     <a class="item">Careers</a>
+                    <#if user??>
+                    <div class="ui simple right dropdown item">
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="header">Sign in as ${user.getName()}</div>
+                            <div class="divider"></div>
+                            <a class="item" href="user">Profile</a>
+                            <a class="item" href="#">Follower</a>
+                            <div class="divider"></div>
+                            <a class="item" href="#">Help</a>
+                            <a class="item" href="#">Setting</a>
+                            <a class="item" href="signout">Sign out</a>
+                        </div>
+                    </div>
+                    <#else>
                     <div class="right item">
                         <a class="ui inverted button" href="login">Log in</a>
                         <a class="ui inverted button" href="register">Sign Up</a>
                     </div>
+                    </#if>
                 </div>
             </div>
 

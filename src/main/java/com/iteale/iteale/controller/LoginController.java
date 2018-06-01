@@ -37,9 +37,7 @@ public class LoginController {
 		User user = userRepository.findByEmail(email);
 		if(user != null && user.getPassword().equals(password))
 		{
-			session.setAttribute("userID", user.getId());
-			session.setAttribute("userName", user.getName());
-			session.setAttribute("userEmail", user.getEmail());
+			session.setAttribute("user", user);
 	        response.sendRedirect("user?id="+user.getId());
 	        return "";
 		}
@@ -76,17 +74,16 @@ public class LoginController {
 		{
 			userRepository.save(new User(name, password, email));
 			User newuser = userRepository.findByEmail(email);
-			session.setAttribute("userID", newuser.getId());
+			session.setAttribute("user", newuser);
 	        response.sendRedirect("user?id="+newuser.getId());
 	        return new ModelAndView();
 		}
-		
     }
 	
 	@RequestMapping(value="/signout")
     public String signout(HttpServletResponse response, HttpServletRequest request) throws IOException{
 		HttpSession session = request.getSession();
-		session.removeAttribute("userID");
+		session.removeAttribute("user");
         return "index";
     }
 }

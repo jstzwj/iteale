@@ -1,5 +1,6 @@
 package com.iteale.iteale.controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class UserController {
 	@Autowired
     private UserRepository userRepository;
 	
-	@RequestMapping("/user")
+	@RequestMapping(value = "/user", params = {"id"})
     public String showUser(HttpServletResponse response,
     		HttpServletRequest request,
     		Model model,
@@ -29,16 +30,28 @@ public class UserController {
 		User curUser = userRepository.findById(id);
 		if(curUser != null)
 		{
-			model.addAttribute("curID", curUser.getId());
-			model.addAttribute("curName", curUser.getName());
-			model.addAttribute("curEmail", curUser.getEmail());
-			model.addAttribute("curAvatar", curUser.getAvatar());
-			model.addAttribute("curBio", curUser.getBio());
+			model.addAttribute("curUser", curUser);
 			return "user";
 		}
 		else
 		{
 			return "error";
+		}
+    }
+	
+	@RequestMapping(value = "/user")
+    public void showUser(HttpServletResponse response,
+    		HttpServletRequest request,
+    		Model model) throws IOException{
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		if(user == null)
+		{
+			response.sendRedirect("login");
+		}
+		else
+		{
+			response.sendRedirect("user?id="+user.getId());
 		}
     }
 }
