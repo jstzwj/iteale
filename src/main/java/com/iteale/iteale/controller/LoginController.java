@@ -82,4 +82,11 @@ public class LoginController {
 		}
 		
     }
+	
+	@RequestMapping(value="/signout")
+    public String signout(HttpServletResponse response, HttpServletRequest request) throws IOException{
+		HttpSession session = request.getSession();
+		session.removeAttribute("userID");
+        return "index";
+    }
 }

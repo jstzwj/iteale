@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;  
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;  
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;  
   
 @Entity  
 public class User {
@@ -12,6 +13,8 @@ public class User {
     private String name;
     private String password;
     private String email;
+    private String avatar;
+    private String bio;
     
     public User() {
     }
@@ -30,6 +33,7 @@ public class User {
         this.id = id;  
     }
     
+    @NotNull
     @Column(length=12)  
     public String getName() {  
         return name;  
@@ -38,6 +42,7 @@ public class User {
         this.name = name;  
     }  
     
+    @NotNull
     @Column(length=255)  
     public String getPassword() {  
         return password;  
@@ -46,11 +51,29 @@ public class User {
         this.password = password;
     }  
     
-    @Column(length=50)  
-    public String getEmail() {  
-        return email;  
+    @Column(length=50)
+    public String getEmail() {
+        return email;
     }
     public void setEmail(String email) {
-        this.email = email;  
-    }  
+        this.email = email;
+    }
+    
+    @NotNull
+    @Column(length=255)
+    public String getAvatar() {
+        return avatar;
+    }
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
+    @NotNull
+    @Column
+    public String getBio() {
+        return bio;
+    }
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 }  

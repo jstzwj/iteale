@@ -1,6 +1,6 @@
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a class="active item">Iteale</a>
+        <a class="active item" href="/">Iteale</a>
         <div class="right menu">
             <div class="item">
                 <div class="ui icon input">
@@ -20,15 +20,15 @@
                         <div class="divider"></div>
                         <a class="item" href="#">Help</a>
                         <a class="item" href="#">Setting</a>
-                        <a class="item" href="#">Sign out</a>
+                        <a class="item" href="signout">Sign out</a>
                     </div>
                 </div>
             <#else>
                 <div class="item">
-                    <a class="ui button">Log in</a>
+                    <a href="login">Log in</a>
                 </div>
                 <div class="item">
-                    <a class="ui primary button">Sign Up</a>
+                    <a href="register">Sign Up</a>
                 </div>
             </#if>
             

@@ -40,12 +40,12 @@
                             <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
                         </div>
                         <div class="content">
-                            <div class="header">Matt Giampietro</div>
+                            <div class="header">${curName}</div>
                             <div class="meta">
-                                <a>Friends</a>
+                                <a>${curEmail}</a>
                             </div>
                             <div class="description">
-                                Matthew is an interior designer living in New York.
+                                ${curBio}
                             </div>
                         </div>
                         <div class="extra content">
