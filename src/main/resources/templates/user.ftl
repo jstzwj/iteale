@@ -70,26 +70,88 @@
                         <div class="description">
                             <p></p>
                         </div>
+                        <div class="ui clearing divider"></div>
+                        <div>
+                            123
+                        </div>
                     </div>
                     <div class="extra content">
-                        <span class="left floated like">
-                            <i class="like icon"></i>
-                            Like
-                        </span>
-                        <span class="right floated star">
-                            <i class="star icon"></i>
-                            Favorite
-                        </span>
+                        <div class="ui comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="../images/avatar/small/matt.jpg">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Matt</a>
+                                    <div class="metadata">
+                                        <span class="date">Today at 5:42PM</span>
+                                    </div>
+                                    <div class="text">
+                                        How artistic!
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="../images/avatar/small/joe.jpg">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Joe Henderson</a>
+                                    <div class="metadata">
+                                        <span class="date">5 days ago</span>
+                                    </div>
+                                    <div class="text">
+                                        Dude, this is awesome. Thanks so much
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <form class="ui reply form">
+                                <div class="ui grid">
+                                    <div class="twelve wide column">
+                                        <div class="field">
+                                            <div class="ui input">
+                                                <input type="text" placeholder="comment...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="four wide column">
+                                        <div class="ui blue labeled submit icon button">
+                                            <i class="icon edit"></i>Reply
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="four wide column">
-                <div class="ui segment">
-                    <img>
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <p>Top</p>
+                    </div>
+                    <div class="ui secondary segment">
+                        <p>Secondary Content</p>
+                    </div>
+                </div>
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <p>SUPPORTED BY</p>
+                    </div>
+                    <div class="ui secondary segment">
+                        <p>Secondary Content</p>
+                    </div>
                 </div>
             </div>
         </div>
-
+    <#include "foot.ftl">
 </body>
 
 </html>

@@ -81,7 +81,7 @@
                         Sign-up to your account
                     </div>
                 </h2>
-                <form class="ui large form">
+                <form class="ui large form" method="post">
                     <div class="ui stacked segment">
                         <div class="field">
                             <div class="ui left icon input">
@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-
+    <#include "foot.ftl">
 </body>
 
 </html>
