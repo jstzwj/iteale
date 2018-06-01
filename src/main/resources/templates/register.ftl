@@ -68,6 +68,12 @@
                     ;
             })
             ;
+
+        $(document).ready(function () {
+            $(".close").click(function () {
+                $(this).parent().hide();
+            });
+        });
     </script>
 </head>
 
@@ -81,6 +87,14 @@
                         Sign-up to your account
                     </div>
                 </h2>
+                <#if registerFail?? && registerFail !="">
+                    <div class="ui error message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            Duplicate email address.
+                        </div>
+                    </div>
+                </#if>
                 <form class="ui large form" method="post">
                     <div class="ui stacked segment">
                         <div class="field">
@@ -114,7 +128,7 @@
                 </div>
             </div>
         </div>
-    <#include "foot.ftl">
+        <#include "foot.ftl">
 </body>
 
 </html>

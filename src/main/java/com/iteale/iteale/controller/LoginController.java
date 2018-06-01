@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,15 +23,14 @@ public class LoginController {
     private UserRepository userRepository;
 	
 	@RequestMapping(value="/login", method = {RequestMethod.GET})
-    public ModelAndView login(){
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("login");
-        return mav;
+    public String login(HttpServletResponse response, HttpServletRequest request){
+        return "login";
     }
 	
 	@RequestMapping(value="/login", params = { "email","password" }, method = {RequestMethod.POST})
-    public ModelAndView login(HttpServletResponse response,
+    public String login(HttpServletResponse response,
     		HttpServletRequest request,
+    		Model model,
     		@RequestParam("email") String email,
     		@RequestParam("password") String password) throws IOException{
 		HttpSession session = request.getSession();
@@ -38,41 +38,48 @@ public class LoginController {
 		if(user != null && user.getPassword().equals(password))
 		{
 			session.setAttribute("userID", user.getId());
+			session.setAttribute("userName", user.getName());
+			session.setAttribute("userEmail", user.getEmail());
 	        response.sendRedirect("user?id="+user.getId());
-	        return new ModelAndView();
+	        return "";
 		}
 		else
 		{
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("loginFail", "true");
-	        mav.setViewName("login");
-	        return mav;
+			model.addAttribute("loginFail", "true");
+	        return "login";
 		}
     }
 	
 	@RequestMapping("/register")
-    public ModelAndView register(){
-        ModelAndView mav=new ModelAndView();
-        //mav.addObject("message", "hello world");
-        mav.setViewName("register");
-        return mav;
+    public String register(HttpServletResponse response, HttpServletRequest request){
+        return "register";
     }
 	
 	@RequestMapping(value="/register", method = {RequestMethod.POST})
-    public void register(HttpServletResponse response,
+    public ModelAndView register(HttpServletResponse response,
     		HttpServletRequest request,
     		@RequestParam("name") String name,
     		@RequestParam("email") String email,
     		@RequestParam("password") String password) throws IOException{
 		HttpSession session = request.getSession();
 		
-		
-		userRepository.save(new User(name, password, email));
-		
 		User user = userRepository.findByEmail(email);
 		
-		session.setAttribute("userID", user.getId());
+		if(user!=null)
+		{
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("registerFail", "true");
+	        mav.setViewName("register");
+	        return mav;
+		}
+		else
+		{
+			userRepository.save(new User(name, password, email));
+			User newuser = userRepository.findByEmail(email);
+			session.setAttribute("userID", newuser.getId());
+	        response.sendRedirect("user?id="+newuser.getId());
+	        return new ModelAndView();
+		}
 		
-        response.sendRedirect("user?id="+user.getId());
     }
 }
