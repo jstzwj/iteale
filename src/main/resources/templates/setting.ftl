@@ -46,76 +46,67 @@
 
 <body>
     <#include "navi.ftl">
-        <form class="ui form segment">
-        <div class="ui top attached tabular menu">
-            <a class="item active" data-tab="first">Profile</a>
-            <a class="item" data-tab="second">Account</a>
-            <a class="item" data-tab="third">Payment Methods</a>
-            <a class="item" data-tab="fourth">Rewards</a>
-        </div>
-        <div class="ui bottom attached tab segment active" data-tab="first">
-            <div class="two fields">
-                <div class="field">
-                    <label>Username</label>
-                    <input placeholder="Username" name="username" type="text">
+        <div class="ui centered grid">
+            <div class="twelve wide tablet eight wide column">
+                <div class="ui top attached tabular menu">
+                    <a class="item active" data-tab="first">Profile</a>
+                    <a class="item" data-tab="second">Account</a>
+                    <a class="item" data-tab="third">Payment Methods</a>
+                    <a class="item" data-tab="fourth">Rewards</a>
                 </div>
-                <div class="field">
-                    <label>Email</label>
-                    <input placeholder="e-mail" name="email" type="text">
+                <div class="ui bottom attached tab segment active" data-tab="first">
+                    <form class="ui form segment" method="post" action="/setting/profile">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Username</label>
+                                <input placeholder="Username" name="username" type="text">
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <input placeholder="e-mail" name="email" type="text">
+                            </div>
+                        </div>
+                        <div class="ui primary submit button">Submit</div>
+                        <div class="ui error message"></div>
+                    </form>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="second">
+                    <form class="ui form segment" method="post" action="/setting/account">
+                        <div class="field">
+                            <div class="field">
+                                <label>Old Password</label>
+                                <input type="password" name="oldPassword">
+                            </div>
+                            <div class="field">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword">
+                            </div>
+                            <div class="field">
+                                <label>conform Password</label>
+                                <input type="password" name="conformPassword">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="ui primary submit button">Submit</div>
+                    <div class="ui error message">
+                    </div>
+                    <#if failure??>
+                    <div class="ui negative message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            ${failure}
+                        </div>
+                    </div>
+                    </#if>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="third">
+                    第三
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="fourth">
+                    第三
                 </div>
             </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>Username</label>
-                    <input placeholder="Username" name="username" type="text">
-                </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input type="password" name="password">
-                </div>
-            </div>
-            <div class="field">
-                <label>Skills</label>
-                <select name="skills" multiple="" class="ui dropdown">
-                    <option value="">Select Skills</option>
-                    <option value="css">CSS</option>
-                    <option value="html">HTML</option>
-                    <option value="javascript">Javascript</option>
-                    <option value="design">Graphic Design</option>
-                    <option value="plumbing">Plumbing</option>
-                    <option value="mech">Mechanical Engineering</option>
-                    <option value="repair">Kitchen Repair</option>
-                </select>
-            </div>
-            <div class="ui primary submit button">Submit</div>
-            <div class="ui error message"></div>
-            
         </div>
-        <div class="ui bottom attached tab segment" data-tab="second">
-            <div class="field">
-                <div class="field">
-                    <label>Old Password</label>
-                    <input type="password" name="oldPassword">
-                </div>
-                <div class="field">
-                    <label>New Password</label>
-                    <input type="password" name="newPassword">
-                </div>
-                <div class="field">
-                    <label>conform Password</label>
-                    <input type="password" name="conformPassword">
-                </div>
-            </div>
-            <div class="ui primary submit button">Submit</div>
-            <div class="ui error message"></div>
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="third">
-            第三
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="fourth">
-            第三
-        </div>
-    </form>
     <#include "foot.ftl">
 
 </body>
