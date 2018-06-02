@@ -152,12 +152,12 @@
                 <div class="menu">
                     <div class="header">Sign in as ${user.getName()}</div>
                     <div class="divider"></div>
-                    <a class="item" href="user">Profile</a>
-                    <a class="item" href="#">Follower</a>
+                    <a class="item" href="/user">Profile</a>
+                    <a class="item" href="/follower">Follower</a>
                     <div class="divider"></div>
-                    <a class="item" href="#">Help</a>
-                    <a class="item" href="#">Setting</a>
-                    <a class="item" href="signout">Sign out</a>
+                    <a class="item" href="/help">Help</a>
+                    <a class="item" href="/setting">Setting</a>
+                    <a class="item" href="/signout">Sign out</a>
                 </div>
             </div>
             <#else>
@@ -202,12 +202,12 @@
                         <div class="menu">
                             <div class="header">Sign in as ${user.getName()}</div>
                             <div class="divider"></div>
-                            <a class="item" href="user">Profile</a>
-                            <a class="item" href="#">Follower</a>
+                            <a class="item" href="/user">Profile</a>
+                            <a class="item" href="/follower">Follower</a>
                             <div class="divider"></div>
-                            <a class="item" href="#">Help</a>
-                            <a class="item" href="#">Setting</a>
-                            <a class="item" href="signout">Sign out</a>
+                            <a class="item" href="/help">Help</a>
+                            <a class="item" href="/setting">Setting</a>
+                            <a class="item" href="/signout">Sign out</a>
                         </div>
                     </div>
                     <#else>
