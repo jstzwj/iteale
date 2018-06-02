@@ -53,11 +53,7 @@ public class UserController {
     		Model model) throws IOException{
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
-		if(user == null)
-		{
-			response.sendRedirect("login");
-		}
-		else
+		if(user != null)
 		{
 			response.sendRedirect("user?id="+user.getId());
 		}
