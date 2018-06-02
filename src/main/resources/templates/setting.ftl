@@ -20,6 +20,10 @@
         body {
             background-color: #DADADA;
         }
+
+        body>.grid {
+            height: 100%;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -28,18 +32,54 @@
             });
 
             $('.menu .item').tab();
-            $('.ui.form')
-                .form({
-                    fields: {
-                        name: 'empty',
-                        gender: 'empty',
-                        username: 'empty',
-                        password: ['minLength[6]', 'empty'],
-                        skills: ['minCount[2]', 'empty'],
-                        terms: 'checked'
+            $('.ui.form').form({
+                fields: {
+                    username: {
+                        identifier: 'username',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your user name'
+                            }
+                        ]
+                    },
+                    email: {
+                        identifier: 'email',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your e-mail'
+                            },
+                            {
+                                type: 'email',
+                                prompt: 'Please enter a valid e-mail'
+                            }
+                        ]
+                    },
+                    oldPassword: {
+                        identifier: 'oldPassword',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your old password'
+                            }
+                        ]
+                    },
+                    newPassword: {
+                        identifier: 'newPassword',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your new password'
+                            },
+                            {
+                                type: 'length[6]',
+                                prompt: 'Your password must be at least 6 characters'
+                            }
+                        ]
                     }
-                })
-                ;
+                }
+            });
         });
     </script>
 </head>
@@ -55,49 +95,38 @@
                     <a class="item" data-tab="fourth">Rewards</a>
                 </div>
                 <div class="ui bottom attached tab segment active" data-tab="first">
-                    <form class="ui form segment" method="post" action="/setting/profile">
-                        <div class="two fields">
-                            <div class="field">
-                                <label>Username</label>
-                                <input placeholder="Username" name="username" type="text">
-                            </div>
-                            <div class="field">
-                                <label>Email</label>
-                                <input placeholder="e-mail" name="email" type="text">
-                            </div>
+                    <form class="ui form segment" method="post" action="/setting?action=profile">
+                        <div class="inline field">
+                            <label>User name</label>
+                            <input placeholder="Username" name="username" type="text">
+                        </div>
+                        <div class="inline field">
+                            <label>E-mail</label>
+                            <input placeholder="e-mail" name="email" type="text">
                         </div>
                         <div class="ui primary submit button">Submit</div>
                         <div class="ui error message"></div>
                     </form>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="second">
-                    <form class="ui form segment" method="post" action="/setting/account">
+                    <form class="ui form segment" method="post" action="/setting?action=account">
                         <div class="field">
                             <div class="field">
                                 <label>Old Password</label>
-                                <input type="password" name="oldPassword">
+                                <input type="password" name="oldPassword" placeholder="old password">
                             </div>
                             <div class="field">
                                 <label>New Password</label>
-                                <input type="password" name="newPassword">
+                                <input type="password" name="newPassword" placeholder="new password">
                             </div>
                             <div class="field">
                                 <label>conform Password</label>
-                                <input type="password" name="conformPassword">
+                                <input type="password" name="confirmPassword" placeholder="confirm password">
                             </div>
                         </div>
+                        <div class="ui primary submit button">Submit</div>
+                        <div class="ui error message"></div>
                     </form>
-                    <div class="ui primary submit button">Submit</div>
-                    <div class="ui error message">
-                    </div>
-                    <#if failure??>
-                    <div class="ui negative message">
-                        <i class="close icon"></i>
-                        <div class="header">
-                            ${failure}
-                        </div>
-                    </div>
-                    </#if>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="third">
                     第三
@@ -105,6 +134,14 @@
                 <div class="ui bottom attached tab segment" data-tab="fourth">
                     第三
                 </div>
+                <#if failure?? && failure!="">
+                    <div class="ui error message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            ${failure}
+                        </div>
+                    </div>
+                </#if>
             </div>
         </div>
     <#include "foot.ftl">

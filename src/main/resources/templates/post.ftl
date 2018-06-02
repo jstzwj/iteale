@@ -64,6 +64,9 @@
                         <select class="ui dropdown" name="price">
                             <option value="free">free</option>
                             <option value="paid">paid</option>
+                            <#list rewardList as reward>
+                                <option value="${reward.getId()}">${reward.getRewardName()+":"+reward.getRewardPrice()}</option>
+                            </#list>
                         </select>
                     </div>
                 </div>
