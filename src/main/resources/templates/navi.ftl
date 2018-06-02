@@ -10,7 +10,7 @@
             </div>
             <#if user??>
                 <div class="item">
-                    <i class="comment outline icon link"></i>
+                    <i class="comment outline icon link" onclick="window.location.href = '/message'"></i>
                 </div>
                 <div class="ui simple dropdown item">
                     <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">

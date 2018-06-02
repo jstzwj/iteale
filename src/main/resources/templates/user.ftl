@@ -20,7 +20,8 @@
         }
 
         .main.container {
-            margin-top: 7em;
+            margin-top: 3em;
+            margin-bottom: 7em;
         }
     </style>
 </head>

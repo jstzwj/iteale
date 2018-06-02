@@ -20,10 +20,6 @@
         body {
             background-color: #DADADA;
         }
-
-        body>.grid {
-            height: 100%;
-        }
     </style>
     <script>
         $(document).ready(function () {
