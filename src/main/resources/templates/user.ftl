@@ -62,17 +62,27 @@
             </div>
 
             <div class="eight wide column">
+                <#if curPost?size == 0>
+                <div class="ui fluid card">
+                    <div class="content">
+                        <p>
+                            No Post.
+                        </p>
+                    </div>
+                </div>
+                </#if>
+                <#list curPost as post>
                 <div class="ui fluid card">
                     <div class="content">
                         <i class="right floated like icon"></i>
                         <i class="right floated star icon"></i>
-                        <div class="header">Cute Dog</div>
+                        <div class="header">${post.getTitle()}</div>
                         <div class="description">
                             <p></p>
                         </div>
                         <div class="ui clearing divider"></div>
                         <div>
-                            123
+                            ${post.getContent()}
                         </div>
                     </div>
                     <div class="extra content">
@@ -89,9 +99,6 @@
                                     <div class="text">
                                         How artistic!
                                     </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="comment">
@@ -105,9 +112,6 @@
                                     </div>
                                     <div class="text">
                                         Dude, this is awesome. Thanks so much
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
                                     </div>
                                 </div>
                             </div>
@@ -126,16 +130,16 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
                 </div>
+                </#list>
             </div>
             <div class="four wide column">
                 <div class="ui segments">
                     <div class="ui segment">
-                        <p>Top</p>
+                        <p>Rewards</p>
                     </div>
                     <div class="ui secondary segment">
                         <p>Secondary Content</p>

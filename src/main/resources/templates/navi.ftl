@@ -9,6 +9,9 @@
                 </div>
             </div>
             <#if user??>
+                <div class="item">
+                    <i class="comment outline icon link"></i>
+                </div>
                 <div class="ui simple dropdown item">
                     <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
                     <i class="dropdown icon"></i>
@@ -18,8 +21,8 @@
                         <a class="item" href="/user">Profile</a>
                         <a class="item" href="#">Follower</a>
                         <div class="divider"></div>
-                        <a class="item" href="#">Help</a>
-                        <a class="item" href="#">Setting</a>
+                        <a class="item" href="/help">Help</a>
+                        <a class="item" href="/setting">Setting</a>
                         <a class="item" href="/signout">Sign out</a>
                     </div>
                 </div>
