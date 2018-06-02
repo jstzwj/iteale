@@ -15,6 +15,7 @@ public class User {
     private String email;
     private String avatar;
     private String bio;
+    private int money;
     
     public User() {
     }
@@ -75,5 +76,14 @@ public class User {
     }
     public void setBio(String bio) {
         this.bio = bio;
+    }
+    
+    @NotNull
+    @Column
+    public int getMoney() {
+        return money;
+    }
+    public void setMoney(int money) {
+        this.money = money;
     }
 }  

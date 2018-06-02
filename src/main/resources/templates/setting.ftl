@@ -51,6 +51,7 @@
             <a class="item active" data-tab="first">Profile</a>
             <a class="item" data-tab="second">Account</a>
             <a class="item" data-tab="third">Payment Methods</a>
+            <a class="item" data-tab="fourth">Rewards</a>
         </div>
         <div class="ui bottom attached tab segment active" data-tab="first">
             <div class="two fields">
@@ -109,6 +110,9 @@
             <div class="ui error message"></div>
         </div>
         <div class="ui bottom attached tab segment" data-tab="third">
+            第三
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="fourth">
             第三
         </div>
     </form>

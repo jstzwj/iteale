@@ -95,7 +95,31 @@
                         <p>Rewards</p>
                     </div>
                     <div class="ui secondary segment">
-                        <p>Secondary Content</p>
+                        <#if curReward?size == 0>
+                            <div class="ui fluid card">
+                                <div class="content">
+                                    <p>
+                                        No Rewards.
+                                    </p>
+                                </div>
+                            </div>
+                        </#if>
+                        <#list curReward as reward>
+                            <div class="ui card">
+                                <div class="content">
+                                  <div class="header">${reward.getRewardName()}</div>
+                                  <div class="description">
+                                    <p>${reward.getRewardContent()}</p>
+                                  </div>
+                                </div>
+                                <div class="ui bottom attached button">
+                                    <i class="add icon"></i>
+                                    support
+                                </div>
+                              </div>
+                            <p></p>
+                            <div class="ui clearing divider"></div>
+                        </#list>
                     </div>
                 </div>
                 <div class="ui segments">

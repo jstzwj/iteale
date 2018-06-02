@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iteale.iteale.Post;
+import com.iteale.iteale.Reward;
 import com.iteale.iteale.User;
 import com.iteale.iteale.repository.PostRepository;
+import com.iteale.iteale.repository.RewardRepository;
 import com.iteale.iteale.repository.UserRepository;
 
 @Controller
@@ -27,6 +29,9 @@ public class UserController {
 	
 	@Autowired
     private PostRepository postRepository;
+	
+	@Autowired
+    private RewardRepository rewardRepository;
 	
 	@RequestMapping(value = "/user", params = {"id"})
     public String showUser(HttpServletResponse response,
@@ -39,6 +44,8 @@ public class UserController {
 			model.addAttribute("curUser", curUser);
 			List<Post> postList = postRepository.findByUserId(curUser.getId());
 			model.addAttribute("curPost", postList);
+			List<Reward> rewardList = rewardRepository.findByUserId(curUser.getId());
+			model.addAttribute("curReward", rewardList);
 			return "user";
 		}
 		else
