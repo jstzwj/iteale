@@ -1,4 +1,4 @@
-<div class="ui inverted menu">
+<div class="ui menu">
     <div class="ui container">
         <a class="active item" href="/">Iteale</a>
         <div class="right menu">
@@ -19,7 +19,8 @@
                         <div class="header">Sign in as ${user.getName()}</div>
                         <div class="divider"></div>
                         <a class="item" href="/user">Profile</a>
-                        <a class="item" href="#">Follower</a>
+                        <a class="item" href="/post/add">Post</a>
+                        <a class="item" href="/follower">Follower</a>
                         <div class="divider"></div>
                         <a class="item" href="/help">Help</a>
                         <a class="item" href="/setting">Setting</a>

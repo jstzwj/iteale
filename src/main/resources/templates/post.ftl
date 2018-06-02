@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Login Example - Semantic</title>
+    <title>Post Example - Semantic</title>
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/semantic-ui/2.3.1/semantic.min.css">
@@ -30,6 +30,19 @@
             $(".close").click(function () {
                 $(this).parent().hide();
             });
+            
+            document.getElementById('submit').addEventListener('click', function () {
+                $("#hidden_editor").val(editor.txt.html());
+            }, false);
+
+            $(document).ready(function () {
+                $('.ui.form').form({
+                    fields: {
+                    title     : 'empty',
+                    editor   : 'empty'
+                    }
+                });
+            });
         });
 
     </script>
@@ -40,7 +53,7 @@
     <div class="ui centered grid">
         <div class="six wide tablet eight wide column">
             <div class="ui horizontal divider">New Post</div>
-            <form class="ui form segment">
+            <form class="ui form segment" method="post">
                 <div class="two fields">
                     <div class="field">
                         <label>Title</label>
@@ -56,17 +69,10 @@
                 </div>
                 <div class="field">
                     <div id="editor">
-                        <p>欢迎使用
-                            <b>wangEditor</b> 富文本编辑器</p>
                     </div>
+                    <input type="text" id="hidden_editor" name="editor" style="display:none"/>
                 </div>
-                <div class="inline field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="terms">
-                        <label>I agree to the terms and conditions</label>
-                    </div>
-                </div>
-                <div class="ui primary submit button">Submit</div>
+                <div class="ui primary submit button" id="submit">Submit</div>
                 <div class="ui error message"></div>
             </form>
         </div>

@@ -116,7 +116,7 @@
             第三
         </div>
     </form>
-        <#include "foot.ftl">
+    <#include "foot.ftl">
 
 </body>
 

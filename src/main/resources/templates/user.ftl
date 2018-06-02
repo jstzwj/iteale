@@ -52,6 +52,7 @@
                             <span class="right floated">
                                 Joined in 2013
                             </span>
+                            <i class="right floated like icon"></i>
                             <span>
                                 <i class="user icon"></i>
                                 75 Friends
@@ -86,52 +87,7 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <div class="ui comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="../images/avatar/small/matt.jpg">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Matt</a>
-                                    <div class="metadata">
-                                        <span class="date">Today at 5:42PM</span>
-                                    </div>
-                                    <div class="text">
-                                        How artistic!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="../images/avatar/small/joe.jpg">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Joe Henderson</a>
-                                    <div class="metadata">
-                                        <span class="date">5 days ago</span>
-                                    </div>
-                                    <div class="text">
-                                        Dude, this is awesome. Thanks so much
-                                    </div>
-                                </div>
-                            </div>
-                            <form class="ui reply form">
-                                <div class="ui grid">
-                                    <div class="twelve wide column">
-                                        <div class="field">
-                                            <div class="ui input">
-                                                <input type="text" placeholder="comment...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="four wide column">
-                                        <div class="ui blue labeled submit icon button">
-                                            <i class="icon edit"></i>Reply
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        
                     </div>
                 </div>
                 </#list>

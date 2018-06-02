@@ -8,23 +8,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Post {
+public class Reward {
 	private int id;
 	private int user_id;
-    private String title;
-    private String content;
-    private int reward;
+    private String reward_name;
+    private String reward_content;
+    private int reward_price;
     
-    public Post() {
-    }
-    
-    public Post(int user_id, String title, String content, int reward) {
-    	this.user_id = user_id;
-    	this.title = title;
-    	this.content = content;
-    	this.reward = reward;
-    }
-      
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
@@ -43,29 +33,29 @@ public class Post {
     }
     
     @NotNull
-    @Column(length=512)
-    public String getTitle() {
-        return title;
+    @Column(length=64)
+    public String getRewardName() {
+        return reward_name;
     }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    @NotNull
-    @Column
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
+    public void setRewardName(String reward_name) {
+        this.reward_name = reward_name;
     }
     
     @NotNull
     @Column
-    public int getReward() {
-        return reward;
+    public String getRewardContent() {
+        return reward_content;
     }
-    public void setReward(int reward) {
-        this.reward = reward;
+    public void setRewardContent(String reward_content) {
+        this.reward_content = reward_content;
+    }
+    
+    @NotNull
+    @Column
+    public int getRewardPrice() {
+        return reward_price;
+    }
+    public void setRewardPrice(int reward_price) {
+        this.reward_price = reward_price;
     }
 }

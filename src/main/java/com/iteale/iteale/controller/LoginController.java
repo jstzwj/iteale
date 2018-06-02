@@ -38,8 +38,7 @@ public class LoginController {
 		if(user != null && user.getPassword().equals(password))
 		{
 			session.setAttribute("user", user);
-	        response.sendRedirect("user?id="+user.getId());
-	        return "";
+	        return "redirect:user?id="+user.getId();
 		}
 		else
 		{

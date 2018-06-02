@@ -120,7 +120,7 @@
 
                 <div class="ui message">
                     New to us?
-                    <a href="#">Sign Up</a>
+                    <a href="/register">Sign Up</a>
                 </div>
             </div>
         </div>
