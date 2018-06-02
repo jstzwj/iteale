@@ -19,10 +19,6 @@
             background-color: #DADADA;
         }
 
-        body>.grid {
-            height: 100%;
-        }
-
         .main.container {
             margin-top: 7em;
         }
