@@ -20,10 +20,6 @@
         body {
             background-color: #DADADA;
         }
-
-        body>.grid {
-            height: 100%;
-        }
     </style>
     <script>
         $(document).ready(function () {
@@ -93,6 +89,7 @@
                     <a class="item" data-tab="second">Account</a>
                     <a class="item" data-tab="third">Payment Methods</a>
                     <a class="item" data-tab="fourth">Rewards</a>
+                    <a class="item" data-tab="fifth">Thanks Words</a>
                 </div>
                 <div class="ui bottom attached tab segment active" data-tab="first">
                     <form class="ui form segment" method="post" action="/setting?action=profile">
@@ -132,7 +129,65 @@
                     第三
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="fourth">
-                    第三
+                    <div class="ui cards">
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <div class="header">Elliot Fu</div>
+                                <div class="description">
+                                    Elliot Fu is a film-maker from New York.
+                                </div>
+                            </div>
+                            <div class="ui bottom attached button">
+                                <i class="minus icon"></i>
+                                delete
+                            </div>
+                        </div>
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <div class="header">New reward solution</div>
+                                <div class="description">
+                                    <form class="ui form" method="post">
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label>Title</label>
+                                                <input placeholder="Your title" name="title" type="text">
+                                            </div>
+                                            <div class="field">
+                                                <label>Money</label>
+                                                <div class="ui right labeled input">
+                                                    <div class="ui label">$</div>
+                                                    <input type="text" placeholder="money">
+                                                    <div class="ui basic label">.00</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div id="rewards_editor">
+                                            </div>
+                                            <input type="text" id="hidden_editor" name="editor" style="display:none" />
+                                        </div>
+                                        <div class="ui error message"></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="ui bottom attached button">
+                                <i class="add icon"></i>
+                                Add
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="fifth">
+                    <form class="ui form segment" method="post">
+                        <p>What supporters will see after payment?</p>
+                        <div class="field">
+                            <div id="thanks_editor">
+                            </div>
+                            <input type="text" id="hidden_editor" name="editor" style="display:none" />
+                        </div>
+                        <div class="ui primary submit button" id="submit">Submit</div>
+                        <div class="ui error message"></div>
+                    </form>
                 </div>
                 <#if failure?? && failure!="">
                     <div class="ui error message">
@@ -144,34 +199,77 @@
                 </#if>
             </div>
         </div>
-    <#include "foot.ftl">
+        <#include "foot.ftl">
 
 </body>
 
 <script type="text/javascript">
     var E = window.wangEditor
-    var editor = new E('#editor')
+    var thanks_editor = new E('#thanks_editor')
 
-    editor.customConfig.menus = [
+    thanks_editor.customConfig.lang = {
+        '字号': 'font size',
+        '文字颜色': 'font color',
+        '链接文字': 'link text',
+        '链接': 'link',
+        '上传图片': 'upload image',
+        '上传': 'upload',
+        '创建': 'init',
+        '默认': 'default',
+        '设置列表': 'list',
+        '有序列表': 'ordered list',
+        '无序列表': 'unordered list',
+        '网络图片': 'web image',
+        '图片link': 'image link'
+    }
+
+    thanks_editor.customConfig.menus = [
         'bold',
         'fontSize',
-        'fontName',
         'italic',
         'underline',
-        'strikeThrough',
         'foreColor',
-        'backColor',
         'link',
         'list',
         'justify',
         'quote',
         'emoticon',
-        'image',
-        'table',
-        'video',
-        'code'
+        'image'
     ]
-    editor.create()
+    thanks_editor.create()
+
+    var rewards_editor = new E('#rewards_editor')
+
+    rewards_editor.customConfig.lang = {
+        '字号': 'font size',
+        '文字颜色': 'font color',
+        '链接文字': 'link text',
+        '链接': 'link',
+        '上传图片': 'upload image',
+        '上传': 'upload',
+        '创建': 'init',
+        '默认': 'default',
+        '设置列表': 'list',
+        '有序列表': 'ordered list',
+        '无序列表': 'unordered list',
+        '网络图片': 'web image',
+        '图片link': 'image link'
+    }
+
+    rewards_editor.customConfig.menus = [
+        'bold',
+        'fontSize',
+        'italic',
+        'underline',
+        'foreColor',
+        'link',
+        'list',
+        'justify',
+        'quote',
+        'emoticon',
+        'image'
+    ]
+    rewards_editor.create()
 </script>
 
 </html>
