@@ -76,6 +76,12 @@
                     }
                 }
             });
+            document.getElementById('rewards_editor').addEventListener('click', function () {
+                $("#hidden_rewards_editor").val(editor.txt.html());
+            }, false);
+            $('#rewards_submit').click(function(){
+                document.getElementById("rewards_form").submit();
+            });
         });
     </script>
 </head>
@@ -146,7 +152,7 @@
                             <div class="content">
                                 <div class="header">New reward solution</div>
                                 <div class="description">
-                                    <form class="ui form" method="post">
+                                    <form class="ui form" method="post" id="rewards_form" action="/setting?action=rewards">
                                         <div class="two fields">
                                             <div class="field">
                                                 <label>Title</label>
@@ -156,7 +162,7 @@
                                                 <label>Money</label>
                                                 <div class="ui right labeled input">
                                                     <div class="ui label">$</div>
-                                                    <input type="text" placeholder="money">
+                                                    <input type="text" placeholder="money" name="money">
                                                     <div class="ui basic label">.00</div>
                                                 </div>
                                             </div>
@@ -164,13 +170,13 @@
                                         <div class="field">
                                             <div id="rewards_editor">
                                             </div>
-                                            <input type="text" id="hidden_editor" name="editor" style="display:none" />
+                                            <input type="text" id="hidden_rewards_editor" name="editor" style="display:none" />
                                         </div>
                                         <div class="ui error message"></div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="ui bottom attached button">
+                            <div class="ui bottom attached button" id="rewards_submit">
                                 <i class="add icon"></i>
                                 Add
                             </div>

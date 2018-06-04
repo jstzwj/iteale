@@ -15,6 +15,17 @@ public class Reward {
     private String reward_content;
     private int reward_price;
     
+    public Reward() {
+    	
+    }
+    
+    public Reward(int user_id, String reward_name, String reward_content, int reward_price) {
+    	this.user_id = user_id;
+    	this.reward_name = reward_name;
+    	this.reward_content = reward_content;
+    	this.reward_price = reward_price;
+    }
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;

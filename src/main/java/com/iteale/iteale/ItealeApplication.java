@@ -24,7 +24,8 @@ public class ItealeApplication {
             		"/setting",
             		"/post/**",
             		"/signout",
-            		"/user");
+            		"/user",
+            		"/message");
         }
     }
 }

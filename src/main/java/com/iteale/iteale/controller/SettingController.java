@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.iteale.iteale.Reward;
 import com.iteale.iteale.User;
+import com.iteale.iteale.repository.RewardRepository;
 import com.iteale.iteale.repository.UserRepository;
 
 @Controller
 public class SettingController {
 	@Autowired
     private UserRepository userRepository;
+	
+	@Autowired
+    private RewardRepository rewardRepository;
 	
 	@RequestMapping(value="/setting", method = {RequestMethod.GET})
     public String setting(HttpServletResponse response, HttpServletRequest request, Model model){
@@ -29,9 +34,12 @@ public class SettingController {
     public String setting(HttpServletResponse response,
     		HttpServletRequest request,
     		Model model,
-    		@RequestParam("action") String action,
-    		@RequestParam("username") String username,
-    		@RequestParam("email") String email){
+    		@RequestParam(value="action", required = false) String action,
+    		@RequestParam(value="username", required = false) String username,
+    		@RequestParam(value="email", required = false) String email,
+    		@RequestParam(value="title", required = false) String title,
+    		@RequestParam(value="money", required = false) Integer money,
+    		@RequestParam(value="editor", required = false) String editor){
 		HttpSession session = request.getSession();
 		if(action.equals("profile"))
 		{
@@ -48,6 +56,14 @@ public class SettingController {
 					user.setEmail(email);
 					userRepository.save(user);
 				}
+			}
+		}
+		else if(action.equals("rewards"))
+		{
+			User user = (User)session.getAttribute("user");
+			if(user!=null)
+			{
+				rewardRepository.save(new Reward(user.getId(),title, editor, money));
 			}
 		}
 		
