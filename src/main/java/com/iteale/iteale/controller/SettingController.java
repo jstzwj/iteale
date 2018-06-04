@@ -49,10 +49,7 @@ public class SettingController {
     		Model model,
     		@RequestParam(value="action", required = false) String action,
     		@RequestParam(value="username", required = false) String username,
-    		@RequestParam(value="email", required = false) String email,
-    		@RequestParam(value="title", required = false) String title,
-    		@RequestParam(value="money", required = false) Integer money,
-    		@RequestParam(value="editor", required = false) String editor){
+    		@RequestParam(value="email", required = false) String email){
 		HttpSession session = request.getSession();
 		if(action.equals("profile"))
 		{
@@ -77,7 +74,7 @@ public class SettingController {
 	
 	@RequestMapping(value="/setting/reward/add")
 	@ResponseBody
-    public Map<String,String> reward_add(HttpServletResponse response,
+    public Map<String,String> rewardAdd(HttpServletResponse response,
     		HttpServletRequest request,
     		Model model,
     		@RequestParam(value="reward_title") String reward_title,
@@ -101,7 +98,7 @@ public class SettingController {
 	
 	@RequestMapping(value="/setting/reward/delete")
 	@ResponseBody
-    public Map<String,String> reward_delete(HttpServletResponse response,
+    public Map<String,String> rewardDelete(HttpServletResponse response,
     		HttpServletRequest request,
     		Model model,
     		@RequestParam(value="id") int id){
@@ -113,6 +110,35 @@ public class SettingController {
 			Reward reward = rewardRepository.findById(id);
 			rewardRepository.delete(reward);
 		}
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/setting/password/update")
+	@ResponseBody
+    public Map<String,String> passwordUpdate(HttpServletResponse response,
+    		HttpServletRequest request,
+    		Model model,
+    		@RequestParam(value="old_password") String old_password,
+    		@RequestParam(value="new_password") String new_password,
+    		@RequestParam(value="confirm_password") String confirm_password){
+		Map<String, String> map=new HashMap<String, String>();
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		boolean isSuccess = false;
+		if(user!=null)
+		{
+			if(user.getPassword().equals(old_password)&&
+					new_password.equals(confirm_password))
+			{
+				user.setPassword(new_password);
+				userRepository.save(user);
+				isSuccess = true; 
+			}
+		}
+		
+		if(isSuccess) map.put("is_success", "true");
+		else map.put("is_success", "false");
 		
 		return map;
 	}

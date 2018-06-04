@@ -1,6 +1,10 @@
 <div class="ui menu">
     <div class="ui container">
-        <a class="active item" href="/">Iteale</a>
+        <#if user??>
+            <a class="active item" href="/user">Iteale</a>
+        <#else>
+            <a class="active item" href="/">Iteale</a>
+        </#if>
         <div class="right menu">
             <div class="item">
                 <form id="search_form" method="post" action="/search">

@@ -53,7 +53,7 @@
                         ]
                     },
                     oldPassword: {
-                        identifier: 'oldPassword',
+                        identifier: 'old_password',
                         rules: [
                             {
                                 type: 'empty',
@@ -62,7 +62,7 @@
                         ]
                     },
                     newPassword: {
-                        identifier: 'newPassword',
+                        identifier: 'new_password',
                         rules: [
                             {
                                 type: 'empty',
@@ -124,6 +124,32 @@
                     }
                 });
             });
+
+            $('.account_update_submit').click(function(){
+                html_dom = $(this);
+                old_password = html_dom.prev().find("#old_password").val();
+                new_password = html_dom.prev().find("#new_password").val();
+                confirm_password = html_dom.prev().find("#confirm_password").val();
+                $.ajax(
+                {
+                    url:"/setting/password/update",
+                    data:{"old_password": old_password,
+                     "new_password": new_password,
+                     "confirm_password":confirm_password},
+                    type:"get",
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        if(data.is_success=='true')
+                            html_dom.next().fadeIn('slow');
+                        else
+                            html_dom.next().next().fadeIn('slow');
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -154,24 +180,38 @@
                     </form>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="second">
-                    <form class="ui form segment" method="post" action="/setting?action=account">
+                    <div class="ui form segment" id="account_form">
                         <div class="field">
                             <div class="field">
                                 <label>Old Password</label>
-                                <input type="password" name="oldPassword" placeholder="old password">
+                                <input type="password" name="old_password" id="old_password" placeholder="old password">
                             </div>
                             <div class="field">
                                 <label>New Password</label>
-                                <input type="password" name="newPassword" placeholder="new password">
+                                <input type="password" name="new_password" id="new_password" placeholder="new password">
                             </div>
                             <div class="field">
                                 <label>conform Password</label>
-                                <input type="password" name="confirmPassword" placeholder="confirm password">
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password">
                             </div>
                         </div>
-                        <div class="ui primary submit button">Submit</div>
+                        <div class="ui primary submit button account_update_submit">Submit</div>
+                        <div class="ui success message" style="display: none;">
+                            <i class="close icon"></i>
+                            <div class="header">
+                                Succeed to update your password!
+                            </div>
+                            <p>You can sign out and log in with your new password.</p>
+                        </div>
+                        <div class="ui warning message" style="display: none;">
+                            <i class="close icon"></i>
+                            <div class="header">
+                                Fail to update password.
+                            </div>
+                            Please check the input again.
+                        </div>
                         <div class="ui error message"></div>
-                    </form>
+                    </div>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="third">
                     第三

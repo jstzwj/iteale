@@ -55,6 +55,12 @@
                                 75 Friends
                             </span>
                         </div>
+                        <#if user.getId()!=curUser.getId()>
+                        <div class="ui bottom attached button">
+                            <i class="add icon"></i>
+                            support
+                        </div>
+                        </#if>
                     </div>
                 </div>
             </div>
@@ -111,10 +117,6 @@
                                   <div class="description">
                                     <p>${reward.getRewardContent()}</p>
                                   </div>
-                                </div>
-                                <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    support
                                 </div>
                               </div>
                             <p></p>

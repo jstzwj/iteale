@@ -85,7 +85,9 @@
                 <div class="ui fluid card">
                     <div class="content">
                         <div class="header">
-                            <img class="ui avatar image" src="${user.getAvatar()}">
+                            <a href="/user?id=${user.getId()}">
+                                <img class="ui avatar image" src="${user.getAvatar()}">
+                            </a>
                             <span>${user.getName()}</span>
                         </div>
                         <div class="description">
