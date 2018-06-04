@@ -34,7 +34,7 @@
                 <div class="ui link cards">
                     <div class="card">
                         <div class="image">
-                            <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                            <img src="${curUser.getAvatar()}">
                         </div>
                         <div class="content">
                             <div class="header">${curUser.getName()}</div>

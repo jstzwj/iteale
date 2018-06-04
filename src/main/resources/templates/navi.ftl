@@ -1,9 +1,3 @@
-<script>
-    $('#search_submit').click(function(){
-        document.getElementById("search_form").submit();
-    });
-</script>
-
 <div class="ui menu">
     <div class="ui container">
         <a class="active item" href="/">Iteale</a>
@@ -48,3 +42,8 @@
         </div>
     </div>
 </div>
+<script>
+    $('#search_submit').click(function(){
+        document.getElementById("search_form").submit();
+    });
+</script>
