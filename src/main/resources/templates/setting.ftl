@@ -82,6 +82,24 @@
             $('#rewards_submit').click(function(){
                 document.getElementById("rewards_form").submit();
             });
+            $('.reward_delete_submit').click(function(){
+                html_component = $(this);
+                id = $(this).prev().text();
+                $.ajax(
+                {
+                    url:"/setting/reward/delete",
+                    data:{"id": id},
+                    type:"get",
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        html_component.parent().remove();
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -136,18 +154,21 @@
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="fourth">
                     <div class="ui cards">
+                        <#list rewardList as reward>
                         <div class="ui fluid card">
                             <div class="content">
-                                <div class="header">Elliot Fu</div>
+                                <div class="header">${reward.getRewardName()}</div>
                                 <div class="description">
-                                    Elliot Fu is a film-maker from New York.
+                                    ${reward.getRewardContent()}
                                 </div>
                             </div>
-                            <div class="ui bottom attached button">
+                            <p hidden>${reward.getId()}</p>
+                            <div class="ui bottom attached button reward_delete_submit">
                                 <i class="minus icon"></i>
                                 delete
                             </div>
                         </div>
+                        </#list>
                         <div class="ui fluid card">
                             <div class="content">
                                 <div class="header">New reward solution</div>
