@@ -76,12 +76,6 @@
                     }
                 }
             });
-            document.getElementById('rewards_editor').addEventListener('click', function () {
-                $("#hidden_rewards_editor").val(editor.txt.html());
-            }, false);
-            $('#rewards_submit').click(function(){
-                document.getElementById("rewards_form").submit();
-            });
             $('.reward_delete_submit').click(function(){
                 html_component = $(this);
                 id = $(this).prev().text();
@@ -93,7 +87,37 @@
                     dataType:"json",
                     success:function(data)
                     {
-                        html_component.parent().remove();
+                        html_component.parent().fadeOut("slow",function(){
+                            html_component.parent().remove();
+                        });
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            });
+            $('.reward_add_submit').click(function(){
+                html_component = $(this);
+                title = html_component.prev().find("#reward_title").val();
+                content = reward_editor.txt.html();
+                price = html_component.prev().find("#reward_money").val();
+                $.ajax(
+                {
+                    url:"/setting/reward/add",
+                    data:{"reward_title": title,
+                     "reward_content": content,
+                     "reward_price":price},
+                    type:"get",
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        template = $("#reward_template").clone(true);
+                        template.find(".header").html(data.reward_title);
+                        template.find(".description").html(data.reward_content);
+                        template.find(".reward_id").html(data.reward_id);
+                        html_component.parent().before(template);
+
+                        template.fadeIn("slow");
                     },
                     error: function() {
                         alert("error");
@@ -154,6 +178,19 @@
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="fourth">
                     <div class="ui cards">
+                        <div class="ui fluid card" id="reward_template" style="display: none">
+                            <div class="content">
+                                <div class="header">default title</div>
+                                <div class="description">
+                                    default content
+                                </div>
+                            </div>
+                            <p hidden class="reward_id">default id</p>
+                            <div class="ui bottom attached button reward_delete_submit">
+                                <i class="minus icon"></i>
+                                delete
+                            </div>
+                        </div>
                         <#list rewardList as reward>
                         <div class="ui fluid card">
                             <div class="content">
@@ -173,31 +210,30 @@
                             <div class="content">
                                 <div class="header">New reward solution</div>
                                 <div class="description">
-                                    <form class="ui form" method="post" id="rewards_form" action="/setting?action=rewards">
+                                    <div class="ui form" id="rewards_form">
                                         <div class="two fields">
                                             <div class="field">
                                                 <label>Title</label>
-                                                <input placeholder="Your title" name="title" type="text">
+                                                <input placeholder="Your title" name="title" id="reward_title" type="text">
                                             </div>
                                             <div class="field">
                                                 <label>Money</label>
                                                 <div class="ui right labeled input">
                                                     <div class="ui label">$</div>
-                                                    <input type="text" placeholder="money" name="money">
+                                                    <input type="text" placeholder="money" name="money" id="reward_money">
                                                     <div class="ui basic label">.00</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="field">
-                                            <div id="rewards_editor">
+                                            <div id="reward_editor">
                                             </div>
-                                            <input type="text" id="hidden_rewards_editor" name="editor" style="display:none" />
                                         </div>
                                         <div class="ui error message"></div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ui bottom attached button" id="rewards_submit">
+                            <div class="ui bottom attached button reward_add_submit">
                                 <i class="add icon"></i>
                                 Add
                             </div>
@@ -265,9 +301,9 @@
     ]
     thanks_editor.create()
 
-    var rewards_editor = new E('#rewards_editor')
+    var reward_editor = new E('#reward_editor')
 
-    rewards_editor.customConfig.lang = {
+    reward_editor.customConfig.lang = {
         '字号': 'font size',
         '文字颜色': 'font color',
         '链接文字': 'link text',
@@ -283,7 +319,7 @@
         '图片link': 'image link'
     }
 
-    rewards_editor.customConfig.menus = [
+    reward_editor.customConfig.menus = [
         'bold',
         'fontSize',
         'italic',
@@ -296,7 +332,7 @@
         'emoticon',
         'image'
     ]
-    rewards_editor.create()
+    reward_editor.create()
 </script>
 
 </html>

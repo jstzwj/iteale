@@ -71,19 +71,33 @@ public class SettingController {
 				}
 			}
 		}
-		else if(action.equals("rewards"))
-		{
-			User user = (User)session.getAttribute("user");
-			if(user!=null)
-			{
-				rewardRepository.save(new Reward(user.getId(),title, editor, money));
-				List<Reward> rewardList = rewardRepository.findByUserId(user.getId());
-				model.addAttribute("rewardList", rewardList);
-			}
-		}
 		
         return "setting";
     }
+	
+	@RequestMapping(value="/setting/reward/add")
+	@ResponseBody
+    public Map<String,String> reward_add(HttpServletResponse response,
+    		HttpServletRequest request,
+    		Model model,
+    		@RequestParam(value="reward_title") String reward_title,
+    		@RequestParam(value="reward_content") String reward_content,
+    		@RequestParam(value="reward_price") int reward_price
+    		){
+		Map<String, String> map=new HashMap<String, String>();
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		if(user!=null)
+		{
+			Reward reward = rewardRepository.save(new Reward(user.getId(),reward_title, reward_content, reward_price));
+			map.put("reward_id", String.valueOf(reward.getId()));
+			map.put("reward_title", reward.getRewardName());
+			map.put("reward_content", reward.getRewardContent());
+			map.put("reward_price", String.valueOf(reward.getRewardPrice()));
+		}
+		
+		return map;
+	}
 	
 	@RequestMapping(value="/setting/reward/delete")
 	@ResponseBody
