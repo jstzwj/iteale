@@ -1,12 +1,20 @@
+<script>
+    $('#search_submit').click(function(){
+        document.getElementById("search_form").submit();
+    });
+</script>
+
 <div class="ui menu">
     <div class="ui container">
         <a class="active item" href="/">Iteale</a>
         <div class="right menu">
             <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
+                <form id="search_form" method="post" action="/search">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search..." name="search_text">
+                        <i class="search link icon" id="search_submit"></i>
+                    </div>
+                </form>
             </div>
             <#if user??>
                 <div class="item">
