@@ -86,7 +86,7 @@ public class SettingController {
 		User user = (User)session.getAttribute("user");
 		if(user!=null)
 		{
-			Reward reward = rewardRepository.save(new Reward(user.getId(),reward_title, reward_content, reward_price));
+			Reward reward = rewardRepository.save(new Reward(user,reward_title, reward_content, reward_price));
 			map.put("reward_id", String.valueOf(reward.getId()));
 			map.put("reward_title", reward.getRewardName());
 			map.put("reward_content", reward.getRewardContent());

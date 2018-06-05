@@ -5,12 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Reward {
 	private int id;
-	private int user_id;
+	private User user;
     private String reward_name;
     private String reward_content;
     private int reward_price;
@@ -19,8 +21,8 @@ public class Reward {
     	
     }
     
-    public Reward(int user_id, String reward_name, String reward_content, int reward_price) {
-    	this.user_id = user_id;
+    public Reward(User user, String reward_name, String reward_content, int reward_price) {
+    	this.user = user;
     	this.reward_name = reward_name;
     	this.reward_content = reward_content;
     	this.reward_price = reward_price;
@@ -34,13 +36,13 @@ public class Reward {
         this.id = id;
     }
     
-    @NotNull
-    @Column
-    public int getUserId() {
-        return user_id;
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    public User getUser() {
+        return user;
     }
-    public void setUserId(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
     
     @NotNull

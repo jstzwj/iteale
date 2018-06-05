@@ -57,8 +57,10 @@
                         </div>
                         <#if user.getId()!=curUser.getId()>
                         <div class="ui bottom attached button">
-                            <i class="add icon"></i>
-                            support
+                            <a href="/support?id=${curUser.getId()}">
+                                <i class="add icon"></i>
+                                support
+                            </a>
                         </div>
                         </#if>
                     </div>
