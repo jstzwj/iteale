@@ -55,7 +55,7 @@ public class PostController {
 		if(user!=null)
 		{
 			postRepository.save(
-					new Post(user.getId(),
+					new Post(user,
 					request.getParameter("title"),
 					request.getParameter("editor"),
 					0));

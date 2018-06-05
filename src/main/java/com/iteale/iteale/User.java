@@ -24,6 +24,7 @@ public class User {
     	this.name = name;
     	this.password = password;
     	this.email = email;
+    	this.avatar = "/avatar/matthew.png";
     }
       
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

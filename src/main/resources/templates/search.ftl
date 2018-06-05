@@ -56,17 +56,17 @@
                 <#list post_search_result as post>
                 <div class="ui fluid card">
                     <div class="content">
-                        <div class="header">${post.getTitle()}</div>
-                        <div class="description">
-                            <p></p>
+                        <div class="header">
+                            <a href="/user?id=${user.getId()}">
+                                <img class="ui avatar image" src="${user.getAvatar()}">
+                            </a>
+                            <span>${post.getTitle()}<span>
                         </div>
+                        <div class="ui tiny header">by ${user.getName()}</div>
                         <div class="ui clearing divider"></div>
-                        <div>
+                        <div class="description">
                             ${post.getContent()}
                         </div>
-                    </div>
-                    <div class="extra content">
-                        
                     </div>
                 </div>
                 </#list>

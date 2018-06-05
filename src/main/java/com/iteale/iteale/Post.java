@@ -1,16 +1,24 @@
 package com.iteale.iteale;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Post {
 	private int id;
-	private int user_id;
+    private User user;
     private String title;
     private String content;
     private int reward;
@@ -18,8 +26,8 @@ public class Post {
     public Post() {
     }
     
-    public Post(int user_id, String title, String content, int reward) {
-    	this.user_id = user_id;
+    public Post(User user, String title, String content, int reward) {
+    	this.user = user;
     	this.title = title;
     	this.content = content;
     	this.reward = reward;
@@ -33,13 +41,13 @@ public class Post {
         this.id = id;
     }
     
-    @NotNull
-    @Column
-    public int getUserId() {
-        return user_id;
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    public User getUser() {
+        return user;
     }
-    public void setUserId(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
     
     @NotNull
