@@ -1,10 +1,18 @@
 package com.iteale.iteale;  
   
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;  
-import javax.persistence.Entity;  
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;  
   
 @Entity  
@@ -16,6 +24,7 @@ public class User {
     private String avatar;
     private String bio;
     private int money;
+    private List<User> following_users=new ArrayList<User>();
     
     public User() {
     }
@@ -86,5 +95,15 @@ public class User {
     }
     public void setMoney(int money) {
         this.money = money;
+    }
+    
+    @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinTable(name="follow",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="follower_id"))
+    public List<User> getFollowingUsers() {
+        return following_users;
+    }
+
+    public void setFollowingUsers(List<User> following_users) {
+        this.following_users = following_users;
     }
 }  

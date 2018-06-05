@@ -36,13 +36,22 @@
 
 <body>
     <#include "navi.ftl">
-    <div class="ui centered grid">
-        <div class="six wide tablet eight wide column">
-            
+        <div class="ui centered grid">
+            <div class="six wide tablet eight wide column">
+                <div class="ui celled list">
+                    <div class="item">
+                        <img class="ui avatar image" src="/images/avatar/small/helen.jpg">
+                        <div class="content">
+                            <div class="header">Snickerdoodle</div>
+                            An excellent companion
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <#include "foot.ftl">
+        <#include "foot.ftl">
 
 </body>
+
 </html>

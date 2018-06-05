@@ -38,14 +38,28 @@ public class UserController {
     		HttpServletRequest request,
     		Model model,
     		@RequestParam("id") int id){
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
 		User curUser = userRepository.findById(id);
-		if(curUser != null)
+		if(curUser != null && user!=null)
 		{
 			model.addAttribute("curUser", curUser);
 			List<Post> postList = postRepository.findByUserId(curUser.getId());
 			model.addAttribute("curPost", postList);
 			List<Reward> rewardList = rewardRepository.findByUserId(curUser.getId());
 			model.addAttribute("curReward", rewardList);
+			
+			boolean isFollowed = false;
+			for(int i=0;i<user.getFollowingUsers().size();++i)
+			{
+				if(user.getFollowingUsers().get(i).getId()==curUser.getId()) {
+					isFollowed = true;
+					break;
+				}
+			}
+			
+			model.addAttribute("isFollowed", isFollowed);
+			
 			return "user";
 		}
 		else

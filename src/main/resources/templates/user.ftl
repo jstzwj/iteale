@@ -24,6 +24,45 @@
             margin-bottom: 7em;
         }
     </style>
+    <script>
+        $(document).ready(function() {
+            $('#follow_button').click(function(){
+                if($(this).hasClass('red')){
+                    html_dom = $(this);
+                    $.ajax(
+                    {
+                        url:"/follow/remove",
+                        data:{"followed_user": ${curUser.getId()}},
+                        type:"get",
+                        dataType:"json",
+                        success:function(data)
+                        {
+                            html_dom.removeClass("red");
+                        },
+                        error: function() {
+                            alert("error");
+                        }
+                    });
+                }else{
+                    html_dom = $(this);
+                    $.ajax(
+                    {
+                        url:"/follow/add",
+                        data:{"followed_user": ${curUser.getId()}},
+                        type:"get",
+                        dataType:"json",
+                        success:function(data)
+                        {
+                            html_dom.addClass("red");
+                        },
+                        error: function() {
+                            alert("error");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -49,10 +88,16 @@
                             <span class="right floated">
                                 Joined in 2013
                             </span>
-                            <i class="right floated like icon"></i>
+                            <#if curUser.getId()!=user.getId()>
+                                <#if isFollowed>
+                                    <i class="right floated like red icon" id="follow_button"></i>
+                                <#else>
+                                    <i class="right floated like icon" id="follow_button"></i>
+                                </#if>
+                            </#if>
                             <span>
                                 <i class="user icon"></i>
-                                75 Friends
+                                ${curUser.getFollowingUsers()?size} Friends
                             </span>
                         </div>
                         <#if user.getId()!=curUser.getId()>
