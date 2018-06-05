@@ -15,6 +15,9 @@
     <script src="https://cdn.bootcss.com/semantic-ui/2.3.1/semantic.min.js"></script>
 
     <script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.bootcss.com/simple-module/3.0.3/simple-module.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/simple-uploader/3.0.0/simple-uploader.js"></script>
 
     <style type="text/css">
         body {
@@ -150,6 +153,15 @@
                     }
                 });
             });
+
+            var uploader = new SimpleUploader({
+                url: '/avatar/update',
+                method: 'post'
+            });
+
+            $('#avatar').on('change', function(e) {
+                uploader.upload(this.files);
+            });
         });
     </script>
 </head>
@@ -168,12 +180,16 @@
                 <div class="ui bottom attached tab segment active" data-tab="first">
                     <form class="ui form segment" method="post" action="/setting?action=profile">
                         <div class="inline field">
+                            <label>Avatar</label>
+                            <input type="file" id="avatar" />
+                        </div>
+                        <div class="inline field">
                             <label>User name</label>
-                            <input placeholder="Username" name="username" type="text">
+                            <input placeholder="Username" name="username" type="text" value="${user.getName()}">
                         </div>
                         <div class="inline field">
                             <label>E-mail</label>
-                            <input placeholder="e-mail" name="email" type="text">
+                            <input placeholder="e-mail" name="email" type="text" value="${user.getEmail()}">
                         </div>
                         <div class="ui primary submit button">Submit</div>
                         <div class="ui error message"></div>
