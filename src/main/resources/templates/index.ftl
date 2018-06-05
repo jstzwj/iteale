@@ -147,7 +147,7 @@
             <a class="item">Careers</a>
             <#if user??>
             <div class="ui simple right dropdown item">
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                <img class="ui avatar image" src="${user.getAvatar()}">
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <div class="header">Sign in as ${user.getName()}</div>
@@ -197,7 +197,7 @@
                     <a class="item">Careers</a>
                     <#if user??>
                     <div class="ui simple right dropdown item">
-                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                        <img class="ui avatar image" src="${user.getAvatar()}">
                         <i class="dropdown icon"></i>
                         <div class="menu">
                             <div class="header">Sign in as ${user.getName()}</div>

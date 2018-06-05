@@ -19,7 +19,7 @@
                     <i class="comment outline icon link" onclick="window.location.href = '/message'"></i>
                 </div>
                 <div class="ui simple dropdown item">
-                    <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/matthew.png">
+                    <img class="ui avatar image" src="${user.getAvatar()}">
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="header">Sign in as ${user.getName()}</div>

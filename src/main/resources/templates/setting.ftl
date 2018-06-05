@@ -16,9 +16,6 @@
 
     <script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
     
-    <script type="text/javascript" src="https://cdn.bootcss.com/simple-module/3.0.3/simple-module.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/simple-uploader/3.0.0/simple-uploader.js"></script>
-
     <style type="text/css">
         body {
             background-color: #DADADA;
@@ -153,14 +150,13 @@
                     }
                 });
             });
-
-            var uploader = new SimpleUploader({
-                url: '/avatar/update',
-                method: 'post'
+            
+            $('#avatar').on('change', function(e) {
+                $('#avatar_form').submit();
             });
 
-            $('#avatar').on('change', function(e) {
-                uploader.upload(this.files);
+            $('#avatar_image').click(function(){
+                $('#avatar').click();
             });
         });
     </script>
@@ -178,11 +174,15 @@
                     <a class="item" data-tab="fifth">Thanks Words</a>
                 </div>
                 <div class="ui bottom attached tab segment active" data-tab="first">
-                    <form class="ui form segment" method="post" action="/setting?action=profile">
+                    <form class="ui form" id="avatar_form" method="post" action="/avatar/update" enctype="multipart/form-data">
                         <div class="inline field">
                             <label>Avatar</label>
-                            <input type="file" id="avatar" />
+                            <input type="file" id="avatar" name="avatar" style="display: none;"/>
+                            <img class="ui small bordered circular image" id="avatar_image" src="${user.getAvatar()}">
                         </div>
+                    </form>
+                    <div class="ui hidden divider"></div>
+                    <form class="ui form" method="post" action="/setting?action=profile">
                         <div class="inline field">
                             <label>User name</label>
                             <input placeholder="Username" name="username" type="text" value="${user.getName()}">

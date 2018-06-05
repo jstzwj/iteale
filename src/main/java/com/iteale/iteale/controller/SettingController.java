@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,7 +80,7 @@ public class SettingController {
 			}
 		}
 		
-        return "setting";
+        return "redirect:/setting";
     }
 	
 	@RequestMapping(value="/setting/reward/add")
@@ -152,21 +155,19 @@ public class SettingController {
 	}
 	
 	@RequestMapping(value="/avatar/update")
-	@ResponseBody
-    public Map<String,String> avatarUpdate(HttpServletResponse response,
+    public String avatarUpdate(HttpServletResponse response,
     		HttpServletRequest request,
     		Model model,
     		@RequestParam("avatar") MultipartFile avatar){
-		Map<String, String> map=new HashMap<String, String>();
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         String dateDir = df.format(new Date());
         String fileName = user.getId() + "_" + dateDir 
-        		+ "." + avatar.getName().substring(avatar.getName().lastIndexOf(".") + 1);
-        File tempFile = new File("avatar" + File.separator
-        		+ fileName);
+        		+ "." + avatar.getOriginalFilename().substring(avatar.getOriginalFilename().lastIndexOf(".") + 1);
+        String fileDirPath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        File tempFile = new File(fileDirPath+"/avatar/"+fileName);
         if (!avatar.isEmpty()) {
             try {
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile));
@@ -175,23 +176,24 @@ public class SettingController {
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                map.put("msg", "fail to upload:" + e.getMessage());
-                map.put("state", "false");
-                return map;
+                //map.put("msg", "fail to upload:" + e.getMessage());
+                //map.put("state", "false");
+                return "redirect:/setting";
             } catch (IOException e) {
                 e.printStackTrace();
-                map.put("msg", "fail to upload:" + e.getMessage());
-                map.put("state", "false");
-                return map;
+                //map.put("msg", "fail to upload:" + e.getMessage());
+                //map.put("state", "false");
+                return "redirect:/setting";
             }
-            map.put("msg", "succeed to upload");
-            user.setAvatar(File.separator + fileName);
-            map.put("state", "true");
+            //map.put("msg", "succeed to upload");
+            user.setAvatar("/avatar/" + fileName);
+            userRepository.save(user);
+            //map.put("state", "true");
         } else {
-            map.put("msg", "fail to upload: empty file");
-            map.put("state", "false");
+            //map.put("msg", "fail to upload: empty file");
+            //map.put("state", "false");
         }
 		
-		return map;
+		return "redirect:/setting";
 	}
 }
