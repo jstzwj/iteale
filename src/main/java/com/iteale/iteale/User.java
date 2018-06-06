@@ -99,7 +99,7 @@ public class User {
     }
     
     @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinTable(name="follow",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="follower_id"))
+    @JoinTable(name="follow",joinColumns=@JoinColumn(name="follower_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
     public List<User> getFollowingUsers() {
         return following_users;
     }
@@ -108,7 +108,7 @@ public class User {
         this.following_users = following_users;
     }
     
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "followingUsers", fetch = FetchType.LAZY)
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "followingUsers", fetch = FetchType.EAGER)
     public List<User> getFollowers() {
         return followers;
     }

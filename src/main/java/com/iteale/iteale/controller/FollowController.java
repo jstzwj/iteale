@@ -69,6 +69,7 @@ public class FollowController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		if(user!=null) {
+			//User followed_user =  userRepository.findById(followed_user_id);
 			int i = 0;
 			for(i=0;i<user.getFollowingUsers().size();++i)
 			{

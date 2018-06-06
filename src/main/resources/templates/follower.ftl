@@ -38,16 +38,27 @@
     <#include "navi.ftl">
         <div class="ui centered grid">
             <div class="six wide tablet eight wide column">
-                <div class="ui celled list">
-                <#list followerList as follower>
-                    <div class="item">
-                        <img class="ui avatar image" src="${follower.getAvatar()}">
-                        <div class="content">
-                            <div class="header">${follower.getName()}</div>
-                            ${follower.getEmail()}
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <div class="ui celled list">
+                        <#if followerList?size==0>
+                            No follower.
+                        </#if>
+                        <#list followerList as follower>
+                            <div class="item">
+                                <div class="content">
+                                    <div class="header">
+                                    <a href="/user?id=${user.getId()}">
+                                        <img class="ui avatar image" src="${follower.getAvatar()}">
+                                        ${follower.getName()}
+                                    </a>
+                                    </div>
+                                    ${follower.getEmail()}
+                                </div>
+                            </div>
+                        </#list>
                         </div>
                     </div>
-                </#list>
                 </div>
             </div>
         </div>

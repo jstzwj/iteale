@@ -87,8 +87,8 @@
                         <div class="header">
                             <a href="/user?id=${user.getId()}">
                                 <img class="ui avatar image" src="${user.getAvatar()}">
+                                <span>${user.getName()}</span>
                             </a>
-                            <span>${user.getName()}</span>
                         </div>
                         <div class="description">
                             <p>${user.getEmail()}</p>
