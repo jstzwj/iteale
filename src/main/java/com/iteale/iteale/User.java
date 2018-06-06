@@ -24,10 +24,13 @@ public class User {
     private String avatar;
     private String bio;
     private int money;
-    private List<User> following_users=new ArrayList<User>();
-    private List<User> followers=new ArrayList<User>();
+    private List<User> following_users;
+    private List<User> followers;
     
     public User() {
+    	this.avatar = "/avatar/matthew.png";
+    	this.following_users=new ArrayList<User>();
+    	this.followers=new ArrayList<User>();
     }
     
     public User(String name, String password, String email) {
@@ -35,6 +38,9 @@ public class User {
     	this.password = password;
     	this.email = email;
     	this.avatar = "/avatar/matthew.png";
+    	this.bio = "";
+    	this.following_users=new ArrayList<User>();
+    	this.followers=new ArrayList<User>();
     }
       
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,7 +104,7 @@ public class User {
         this.money = money;
     }
     
-    @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToMany(cascade= {CascadeType.ALL},fetch=FetchType.EAGER)
     @JoinTable(name="follow",joinColumns=@JoinColumn(name="follower_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
     public List<User> getFollowingUsers() {
         return following_users;
@@ -108,7 +114,7 @@ public class User {
         this.following_users = following_users;
     }
     
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "followingUsers", fetch = FetchType.EAGER)
+    @ManyToMany(cascade= {CascadeType.ALL}, mappedBy = "followingUsers", fetch = FetchType.EAGER)
     public List<User> getFollowers() {
         return followers;
     }

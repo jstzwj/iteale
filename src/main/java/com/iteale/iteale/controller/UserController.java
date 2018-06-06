@@ -46,7 +46,7 @@ public class UserController {
 			model.addAttribute("curUser", curUser);
 			List<Post> postList = postRepository.findByUserId(curUser.getId());
 			model.addAttribute("curPost", postList);
-			List<Reward> rewardList = rewardRepository.findByUserId(curUser.getId());
+			List<Reward> rewardList = rewardRepository.findByUser(curUser);
 			model.addAttribute("curReward", rewardList);
 			
 			boolean isFollowed = false;

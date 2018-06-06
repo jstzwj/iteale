@@ -53,8 +53,9 @@ public class LoginController {
     }
 	
 	@RequestMapping(value="/register", method = {RequestMethod.POST})
-    public ModelAndView register(HttpServletResponse response,
+    public String register(HttpServletResponse response,
     		HttpServletRequest request,
+    		Model model,
     		@RequestParam("name") String name,
     		@RequestParam("email") String email,
     		@RequestParam("password") String password) throws IOException{
@@ -64,18 +65,15 @@ public class LoginController {
 		
 		if(user!=null)
 		{
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("registerFail", "true");
-	        mav.setViewName("register");
-	        return mav;
+			model.addAttribute("registerFail", "true");
+	        return "login";
 		}
 		else
 		{
 			userRepository.save(new User(name, password, email));
 			User newuser = userRepository.findByEmail(email);
 			session.setAttribute("user", newuser);
-	        response.sendRedirect("user?id="+newuser.getId());
-	        return new ModelAndView();
+	        return "redirect:/user?id="+newuser.getId();
 		}
     }
 	

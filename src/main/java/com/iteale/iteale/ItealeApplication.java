@@ -29,7 +29,9 @@ public class ItealeApplication {
             		"/post/**",
             		"/signout",
             		"/user",
-            		"/message");
+            		"/message",
+            		"/follower",
+            		"/support");
         }
     	
     	@Override

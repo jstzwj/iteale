@@ -47,13 +47,8 @@ public class FollowController {
 		if(user!=null) {
 			User followed_user =  userRepository.findById(followed_user_id);
 			
-			for(int i=0;i<user.getFollowingUsers().size();++i)
-			{
-				if(user.getFollowingUsers().get(i).getId()==followed_user_id) {
-					return map;
-				}
-			}
 			user.getFollowingUsers().add(followed_user);
+			//followed_user.getFollowers().add(user);
 			
 			userRepository.save(user);
 		}
@@ -69,17 +64,8 @@ public class FollowController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		if(user!=null) {
-			//User followed_user =  userRepository.findById(followed_user_id);
-			int i = 0;
-			for(i=0;i<user.getFollowingUsers().size();++i)
-			{
-				if(user.getFollowingUsers().get(i).getId()==followed_user_id) {
-					break;
-				}
-			}
-			
-			if(i < user.getFollowingUsers().size())
-				user.getFollowingUsers().remove(i);
+			User followed_user =  userRepository.findById(followed_user_id);
+			user.getFollowingUsers().remove(followed_user);
 			
 			userRepository.save(user);
 		}

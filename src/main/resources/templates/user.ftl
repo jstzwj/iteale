@@ -25,42 +25,50 @@
         }
     </style>
     <script>
-        $(document).ready(function() {
-            $('#follow_button').click(function(){
-                if($(this).hasClass('red')){
+        $(document).ready(function () {
+            $('#follow_button').click(function () {
+                if ($(this).hasClass('red')) {
                     html_dom = $(this);
                     $.ajax(
                     {
-                        url:"/follow/remove",
-                        data:{"followed_user": ${curUser.getId()}},
-                        type:"get",
-                        dataType:"json",
-                        success:function(data)
-                        {
+                        url: "/follow/remove",
+                        data: { "followed_user": ${ curUser.getId() }},
+                        type: "get",
+                        dataType: "json",
+                        success: function(data) {
                             html_dom.removeClass("red");
                         },
                         error: function() {
                             alert("error");
                         }
                     });
-                }else{
+                }else {
                     html_dom = $(this);
                     $.ajax(
                     {
-                        url:"/follow/add",
-                        data:{"followed_user": ${curUser.getId()}},
-                        type:"get",
-                        dataType:"json",
-                        success:function(data)
-                        {
+                        url: "/follow/add",
+                        data: { "followed_user": ${ curUser.getId() }},
+                        type: "get",
+                        dataType: "json",
+                        success: function (data) {
                             html_dom.addClass("red");
                         },
-                        error: function() {
+                        error: function () {
                             alert("error");
                         }
                     });
                 }
             });
+
+            $('.support_button').click(function(){
+                title = $(this).prev().find('.header').html();
+                content = $(this).prev().find('.description').html();
+                $('#support_modal_name').html(title);
+                $('#support_modal_content').html(content);
+                $('#support_modal').modal('show');
+            });
+
+            $('.dropdown').dropdown();
         });
     </script>
 </head>
@@ -91,8 +99,8 @@
                             <#if curUser.getId()!=user.getId()>
                                 <#if isFollowed>
                                     <i class="right floated like red icon" id="follow_button"></i>
-                                <#else>
-                                    <i class="right floated like icon" id="follow_button"></i>
+                                    <#else>
+                                        <i class="right floated like icon" id="follow_button"></i>
                                 </#if>
                             </#if>
                             <span>
@@ -100,46 +108,38 @@
                                 ${followerNum} Followers
                             </span>
                         </div>
-                        <#if user.getId()!=curUser.getId()>
-                        <div class="ui bottom attached button">
-                            <a href="/support?id=${curUser.getId()}">
-                                <i class="add icon"></i>
-                                support
-                            </a>
-                        </div>
-                        </#if>
                     </div>
                 </div>
             </div>
 
             <div class="eight wide column">
-                <#if curPost?size == 0>
-                <div class="ui fluid card">
-                    <div class="content">
-                        <p>
-                            No Post.
-                        </p>
+                <#if curPost?size==0>
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <p>
+                                No Post.
+                            </p>
+                        </div>
                     </div>
-                </div>
                 </#if>
                 <#list curPost as post>
-                <div class="ui fluid card">
-                    <div class="content">
-                        <i class="right floated like icon"></i>
-                        <i class="right floated star icon"></i>
-                        <div class="header">${post.getTitle()}</div>
-                        <div class="description">
-                            <p></p>
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <i class="right floated like icon"></i>
+                            <i class="right floated star icon"></i>
+                            <div class="header">${post.getTitle()}</div>
+                            <div class="description">
+                                <p></p>
+                            </div>
+                            <div class="ui clearing divider"></div>
+                            <div>
+                                ${post.getContent()}
+                            </div>
                         </div>
-                        <div class="ui clearing divider"></div>
-                        <div>
-                            ${post.getContent()}
+                        <div class="extra content">
+
                         </div>
                     </div>
-                    <div class="extra content">
-                        
-                    </div>
-                </div>
                 </#list>
             </div>
             <div class="four wide column">
@@ -148,7 +148,7 @@
                         <p>Rewards</p>
                     </div>
                     <div class="ui secondary segment">
-                        <#if curReward?size == 0>
+                        <#if curReward?size==0>
                             <div class="ui fluid card">
                                 <div class="content">
                                     <p>
@@ -160,15 +160,55 @@
                         <#list curReward as reward>
                             <div class="ui card">
                                 <div class="content">
-                                  <div class="header">${reward.getRewardName()}</div>
-                                  <div class="description">
-                                    <p>${reward.getRewardContent()}</p>
-                                  </div>
+                                    <div class="header">${reward.getRewardName()}</div>
+                                    <div class="description">
+                                        ${reward.getRewardContent()}
+                                    </div>
                                 </div>
-                              </div>
+                                <#if user.getId()!=curUser.getId()>
+                                    <div class="ui bottom attached button support_button">
+                                        <i class="add icon"></i>
+                                        support
+                                    </div>
+                                </#if>
+                            </div>
                             <p></p>
                             <div class="ui clearing divider"></div>
                         </#list>
+                        <div class="ui modal" id="support_modal">
+                            <i class="close icon"></i>
+                            <div class="header">
+                                support creator
+                            </div>
+                            <div class="content">
+                                <div class="description">
+                                    <div class="ui header" id="support_modal_name"></div>
+                                    <p id="support_modal_content"></p>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="time">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">time</div>
+                                        <div class="menu">
+                                            <div class="item" data-value="1">1 Monthes</div>
+                                            <div class="item" data-value="3">3 Monthes</div>
+                                            <div class="item" data-value="6">6 Monthes</div>
+                                            <div class="item" data-value="12">1 Year</div>
+                                            <div class="item" data-value="24">2 Year</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <div class="ui red cancel inverted button">
+                                    <i class="remove icon"></i>
+                                    No
+                                </div>
+                                <div class="ui green ok inverted button">
+                                    <i class="checkmark icon"></i>
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="ui segments">
@@ -181,7 +221,7 @@
                 </div>
             </div>
         </div>
-    <#include "foot.ftl">
+        <#include "foot.ftl">
 </body>
 
 </html>

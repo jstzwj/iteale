@@ -39,7 +39,7 @@ public class PostController {
 		User user = (User)session.getAttribute("user");
 		if(user!=null)
 		{
-			List<Reward> rewardList = rewardRepository.findByUserId(user.getId());
+			List<Reward> rewardList = rewardRepository.findByUser(user);
 			model.addAttribute("rewardList", rewardList);
 		}
         return "post";
