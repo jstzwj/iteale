@@ -60,6 +60,8 @@ public class UserController {
 			
 			model.addAttribute("isFollowed", isFollowed);
 			
+			model.addAttribute("followerNum", curUser.getFollowers().size());
+			
 			return "user";
 		}
 		else

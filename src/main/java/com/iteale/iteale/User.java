@@ -25,6 +25,7 @@ public class User {
     private String bio;
     private int money;
     private List<User> following_users=new ArrayList<User>();
+    private List<User> followers=new ArrayList<User>();
     
     public User() {
     }
@@ -105,5 +106,14 @@ public class User {
 
     public void setFollowingUsers(List<User> following_users) {
         this.following_users = following_users;
+    }
+    
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "followingUsers", fetch = FetchType.LAZY)
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
     }
 }  

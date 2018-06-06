@@ -86,7 +86,7 @@
                         </div>
                         <div class="extra content">
                             <span class="right floated">
-                                Joined in 2013
+                                Joined in 2018
                             </span>
                             <#if curUser.getId()!=user.getId()>
                                 <#if isFollowed>
@@ -97,7 +97,7 @@
                             </#if>
                             <span>
                                 <i class="user icon"></i>
-                                ${curUser.getFollowingUsers()?size} Friends
+                                ${followerNum} Followers
                             </span>
                         </div>
                         <#if user.getId()!=curUser.getId()>
