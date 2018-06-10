@@ -26,7 +26,7 @@
                         <div class="divider"></div>
                         <a class="item" href="/user">Profile</a>
                         <a class="item" href="/post/add">Post</a>
-                        <a class="item" href="/follower">Follower</a>
+                        <!--<a class="item" href="/follower">Follower</a>-->
                         <div class="divider"></div>
                         <a class="item" href="/help">Help</a>
                         <a class="item" href="/setting">Setting</a>

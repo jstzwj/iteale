@@ -230,7 +230,10 @@
                     </div>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="third">
-                    第三
+                <p>Alipay</p>
+                <p>Wechat</p>
+                <p>Paypal</p>
+                <p>Bitcoin</p>
                 </div>
                 <div class="ui bottom attached tab segment" data-tab="fourth">
                     <div class="ui cards">

@@ -64,19 +64,21 @@ public class SettingController {
 		HttpSession session = request.getSession();
 		if(action.equals("profile"))
 		{
-			if(userRepository.findByEmail(email)!=null)
+			
+			User user = (User)session.getAttribute("user");
+			if(user!=null)
 			{
-				model.addAttribute("failure", "duplicate email.");
-			}
-			else
-			{
-				User user = (User)session.getAttribute("user");
-				if(user!=null)
+				user.setName(username);
+				if(userRepository.findByEmail(email)!=null)
 				{
-					user.setName(username);
-					user.setEmail(email);
-					userRepository.save(user);
+					model.addAttribute("failure", "duplicate email.");
 				}
+				else
+				{
+					user.setEmail(email);
+				}
+				
+				userRepository.save(user);
 			}
 		}
 		
